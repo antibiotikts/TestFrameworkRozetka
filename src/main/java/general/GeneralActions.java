@@ -1,6 +1,6 @@
 package general;
 
-import dev.failsafe.internal.util.Assert;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -23,6 +23,7 @@ public class GeneralActions {
                 driver = new FirefoxDriver();
                 break;
         }
+        driver.manage().window().maximize();
         return driver;
     }
 }
