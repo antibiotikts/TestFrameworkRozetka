@@ -19,8 +19,15 @@ public class FoundProductsPage extends BasePage {
         super(driver);
     }
 
-     public List<WebElement> getOnSail() throws InterruptedException {
-         Thread.sleep(3000);
+     public FoundProductsPage waitElements() {
+        WebElement element = (new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.elementToBeClickable(foundProductsOnSail)));
+        return this;
+     }
+     public List<WebElement> getOnSail() {
+         System.out.println(driver.getCurrentUrl());
+         System.out.println(driver.getCurrentUrl());
+
          return (driver.findElements(foundProductsOnSail));
      }
 
