@@ -1,18 +1,26 @@
-import com.sun.org.glassfish.external.probe.provider.annotations.ProbeListener;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
-import java.io.FileNotFoundException;
-import java.util.List;
-
-import static constants.Url.ROZETKA;
-
+@RunWith(Parameterized.class)
 public class SearchTest extends BaseTest {
+    String products;
+
+    public SearchTest(String products) {
+        this.products = products;
+    }
+
+    @Parameterized.Parameters
+    public static String[] products() {
+        return new String[]{"Ipad", "Iphone"};
+    }
+    @Ignore
     @Test
     public void checkSearchTest() {
         homePage
                 .search()
-                .addSearchidProduct("Ipad")
+                .addSearchidProduct(products)
                 .presSearchButton()
                 .waitPage();
     }
@@ -21,7 +29,7 @@ public class SearchTest extends BaseTest {
     public void getProductsTest() {
         homePage
                 .search()
-                .addSearchidProduct("Ipad")
+                .addSearchidProduct(products)
                 .presSearchButton()
                 .waitPage();
 
