@@ -12,8 +12,9 @@ import java.util.List;
 public class FoundProductsPage extends BasePage {
 
     private final By foundProductsOnSail = By.xpath("//div[@class='goods-tile ng-star-inserted']");
-
     private final By foundProductsNotForSail = By.xpath("//div[@class='goods-tile goods-tile_state_disabled ng-star-inserted']");
+
+    private final By salesmanRozetka = By.xpath("//a[@data-id='Rozetka']");
 
     public FoundProductsPage(WebDriver driver) {
         super(driver);
@@ -22,6 +23,13 @@ public class FoundProductsPage extends BasePage {
      public FoundProductsPage waitElements() {
         WebElement element = (new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(foundProductsOnSail)));
+        return this;
+     }
+
+     public FoundProductsPage sortBySalesman() {
+        WebElement sortCheckbox = (new WebDriverWait(driver, Duration.ofSeconds(4)))
+                .until(ExpectedConditions.elementToBeClickable(salesmanRozetka));
+        sortCheckbox.click();
         return this;
      }
      public List<WebElement> getOnSail() {

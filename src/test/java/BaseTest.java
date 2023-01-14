@@ -1,6 +1,7 @@
 import general.GeneralActions;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.openqa.selenium.WebDriver;
 import page.BasePage;
 import page.FoundProductsPage;
@@ -18,6 +19,7 @@ public class BaseTest {
     public void openBrowser() {
         basePage.open(ROZETKA);
     }
+
     @After
     public void closeBrowser() {
         driver.close();

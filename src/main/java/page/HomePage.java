@@ -5,9 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.Duration;
@@ -25,6 +27,10 @@ public class HomePage extends BasePage{
     private final By loginField = By.id("auth_email");
     private final By passwordField = By.id("auth_pass");
     private final By loginEnterButton = By.xpath("button[@class='button button--large button--green auth-modal__submit ng-star-inserted']");
+    private final By catalogButton = By.id("fat-menu");
+    private final By sneakers = By.xpath("//a[contains(@href, 'mugskie-krossovki')]");
+    private final By shoesClothes = By.xpath("//a[contains(@href, 'shoes_clothes')]");
+
     public HomePage search() {
         driver.findElement(searchLine);
         return this;
@@ -37,6 +43,18 @@ public class HomePage extends BasePage{
 
     public HomePage presSearchButton() {
         driver.findElement(searchButton).click();
+        return this;
+    }
+
+    public HomePage searchidByCatalog() {
+        WebElement button = (new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(catalogButton)));
+        button.click();
+        WebElement shoesClothesMenu = (new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(shoesClothes)));
+        Actions action = new Actions(driver);
+        action.moveToElement(shoesClothesMenu);
+        action.perform();
+        WebElement searchidProduct = (new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.elementToBeClickable(sneakers)));
+        searchidProduct.click();
         return this;
     }
 

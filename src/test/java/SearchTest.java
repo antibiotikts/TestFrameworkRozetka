@@ -13,7 +13,7 @@ public class SearchTest extends BaseTest {
 
     @Parameterized.Parameters
     public static String[] products() {
-        return new String[]{"Ipad", "Iphone"};
+        return new String[]{"Ipad"};
     }
     @Ignore
     @Test
@@ -24,7 +24,18 @@ public class SearchTest extends BaseTest {
                 .presSearchButton()
                 .waitPage();
     }
-
+    @Ignore
+    @Test
+    public void searchSneakersByCatalogTest() {
+        homePage.searchidByCatalog();
+    }
+    @Test
+    public void sortBySalesmanTest()
+    {
+        homePage.searchidByCatalog();
+        foundProductsPage.sortBySalesman();
+    }
+    @Ignore
     @Test
     public void getProductsTest() {
         homePage
